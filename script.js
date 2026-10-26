@@ -124,7 +124,7 @@ const ctx = canvas.getContext("2d");
 let width, height;
 let stars = [];
 const numStars = 800;
-let scrollVelocity = 0;
+let scrollBoost = 0;
 let lastScrollY = window.scrollY;
 
 function resize() {
@@ -137,16 +137,16 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-// Map time dimension to scroll velocity
 window.addEventListener("scroll", () => {
   const currentScrollY = window.scrollY;
   const deltaY = currentScrollY - lastScrollY;
-  scrollVelocity = deltaY * 0.15; // Calculate warp speed based on scroll speed
+  scrollBoost = Math.min(1.2, scrollBoost + Math.min(Math.abs(deltaY) * 0.008, 0.35));
   lastScrollY = currentScrollY;
 });
 
 class Star {
   constructor() {
+    this.speed = 0.75 + Math.random() * 0.5;
     this.reset(true);
   }
   
@@ -159,12 +159,10 @@ class Star {
   
   update(speedBase) {
     this.pz = this.z;
-    // 4D factor: Time dilation based on scroll velocity + base speed
-    const currentSpeed = speedBase + Math.abs(scrollVelocity) * 15;
-    this.z -= currentSpeed;
+    this.z -= (speedBase + scrollBoost) * this.speed;
     
     if (this.z < 1) {
-      this.reset();
+      this.reset(true);
     }
   }
   
@@ -201,17 +199,16 @@ function animate4D() {
   ctx.clearRect(0, 0, width, height);
   
   // Base speed is very slow to represent standard time flow
-  const baseSpeed = 2;
+  const baseSpeed = 1.5;
   
-  // Decay scroll velocity (friction)
-  scrollVelocity *= 0.95;
+  scrollBoost *= 0.94;
   
   // Optional: subtle rotation to give a 4D twist
   const twist = Math.sin(Date.now() * 0.0005) * 0.2;
   
   ctx.save();
   ctx.translate(width/2, height/2);
-  ctx.rotate(twist + scrollVelocity * 0.005);
+  ctx.rotate(twist);
   ctx.translate(-width/2, -height/2);
 
   stars.forEach(star => {
