@@ -89,28 +89,28 @@ tiltElements.forEach(el => {
     const y = e.clientY - rect.top;
     const xPct = (x / rect.width - 0.5) * 2;
     const yPct = (y / rect.height - 0.5) * 2;
-    const rotateX = -yPct * 30; // Increased to 30deg for more 4D feel
-    const rotateY = xPct * 30;
+    const rotateX = -yPct * 4;
+    const rotateY = xPct * 4;
     
-    el.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.08, 1.08, 1.08)`;
-    el.style.transition = "transform 0.1s ease-out";
+    el.style.transform = `perspective(1600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.005, 1.005, 1.005)`;
+    el.style.transition = "transform 0.24s ease-out";
     el.style.zIndex = "10";
     
     const children = el.querySelectorAll('img, h3, .floating-icon, strong, .card-img-wrap, .frame-content');
     children.forEach(child => {
-      child.style.transform = `translateZ(80px)`; // Deep 4D pop
-      child.style.transition = "transform 0.1s ease-out";
+      child.style.transform = `translateZ(8px)`;
+      child.style.transition = "transform 0.24s ease-out";
     });
   });
   
   el.addEventListener('mouseleave', () => {
-    el.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-    el.style.transition = "transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)";
+    el.style.transform = `perspective(1600px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    el.style.transition = "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
     el.style.zIndex = "1";
     const children = el.querySelectorAll('img, h3, .floating-icon, strong, .card-img-wrap, .frame-content');
     children.forEach(child => {
       child.style.transform = `translateZ(0px)`;
-      child.style.transition = "transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)";
+      child.style.transition = "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
     });
   });
 });
