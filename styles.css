@@ -438,3 +438,178 @@ body.light{background:#e8e8e6;color:#11110f; --glass-bg: rgba(255,255,255,0.6); 
   .contact h2{font-size:17vw}
   .resume-footer{flex-direction:column; gap:15px;}
 }
+
+/* Reference-inspired layout, keeping the existing lime accent. */
+body:not(.light) {
+  background-color: #080c18;
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(24, 35, 67, 0.42), transparent 42%),
+    radial-gradient(ellipse at 85% 48%, rgba(15, 29, 53, 0.34), transparent 48%);
+}
+
+body:not(.light)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(200, 255, 67, 0.72) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.42) 1px, transparent 1.5px);
+  background-position: 35px 45px, 110px 125px;
+  background-size: 190px 180px, 270px 240px;
+  opacity: 0.18;
+}
+
+.noise { opacity: 0.025; }
+.orb { opacity: 0.16; }
+.nav {
+  height: 80px;
+  padding: 0 6vw;
+  background: rgba(12, 17, 31, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+.brand {
+  font-size: 26px;
+  letter-spacing: -0.075em;
+  text-shadow: none;
+}
+.nav nav { gap: clamp(18px, 2.6vw, 36px); }
+.nav nav a { opacity: 0.78; }
+.nav-right { gap: 16px; }
+.status {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 16px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--glass-border);
+}
+.theme { width: 42px; height: 42px; }
+.button.ghost { color: var(--text-main); }
+
+.hero {
+  min-height: min(690px, calc(100vh - 80px));
+  grid-template-columns: minmax(0, 1.2fr) minmax(330px, 0.8fr);
+  align-items: center;
+  gap: 5vw;
+  padding: 60px 8vw 68px;
+}
+.hero-copy { min-width: 0; }
+.hero .eyebrow { margin-bottom: 28px; }
+.hero h1 {
+  font-size: clamp(88px, 10vw, 138px);
+  line-height: 0.94;
+  letter-spacing: -0.085em;
+  white-space: nowrap;
+}
+.hero-title .glitch {
+  color: var(--neon-lime);
+  font-style: normal;
+}
+.hero-title .glitch::before,
+.hero-title .glitch::after { display: none; }
+.hero-line {
+  max-width: 680px;
+  margin: 30px 0 34px;
+  font-size: clamp(18px, 1.85vw, 23px);
+  line-height: 1.58;
+}
+.hero-aside {
+  align-self: center;
+  justify-self: stretch;
+  width: 100%;
+  max-width: 440px;
+}
+.hero-facts {
+  padding: 22px 34px;
+  border-radius: 18px;
+  background: rgba(17, 23, 39, 0.78);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+}
+.fact-item { padding: 16px 0; }
+.fact-item span { font-size: 11px; }
+.fact-item strong { font-size: 16px; }
+
+.marquee-container {
+  margin-top: 0;
+  background: rgba(14, 19, 32, 0.54);
+}
+.section { padding-top: 100px; padding-bottom: 100px; }
+.section-head { margin-bottom: 48px; }
+.project {
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: 18px;
+  background: rgba(17, 23, 39, 0.72);
+}
+.project-visual-frame {
+  border-radius: 14px;
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.38);
+}
+.stat,
+.learning-block,
+.stack-block {
+  border-radius: 16px;
+  background: rgba(17, 23, 39, 0.72);
+}
+.contact-inner {
+  border-radius: 20px;
+  background: rgba(17, 23, 39, 0.76);
+}
+.resume-footer { background: rgba(12, 17, 31, 0.72); }
+
+.light::before { display: none; }
+.light .nav,
+.light .marquee-container,
+.light .project,
+.light .stat,
+.light .learning-block,
+.light .stack-block,
+.light .contact-inner,
+.light .resume-footer {
+  background: var(--glass-bg);
+}
+
+@media(max-width: 960px) {
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 44px;
+    padding: 72px 7vw 64px;
+  }
+  .hero-aside {
+    justify-self: start;
+    max-width: none;
+    margin-top: 0;
+  }
+  .hero h1 { font-size: clamp(76px, 14vw, 112px); }
+}
+
+@media(max-width: 540px) {
+  .nav { height: 70px; }
+  .brand { font-size: 24px; }
+  .nav-right { gap: 10px; }
+  .theme { width: 38px; height: 38px; }
+  .hero { padding: 56px 6vw 50px; }
+  .hero h1 {
+    font-size: clamp(66px, 16vw, 88px);
+    letter-spacing: -0.09em;
+  }
+  .hero .eyebrow { font-size: 10px; letter-spacing: 0.12em; }
+  .hero-facts { padding: 16px 22px; }
+  .section { padding-top: 76px; padding-bottom: 76px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html { overflow-x: clip; }

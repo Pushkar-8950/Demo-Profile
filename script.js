@@ -80,7 +80,7 @@ style.textContent = ".reveal { opacity: 0; transform: translateY(40px) scale(0.9
 document.head.appendChild(style);
 
 // EXTREME 3D TILT EFFECT (2050 Aesthetic)
-const tiltElements = document.querySelectorAll('.3d-tilt, .glass-card');
+const tiltElements = document.querySelectorAll('[class~="3d-tilt"], .glass-card');
 tiltElements.forEach(el => {
   el.style.transformStyle = "preserve-3d";
   el.addEventListener('mousemove', (e) => {
