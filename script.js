@@ -89,8 +89,8 @@ tiltElements.forEach(el => {
     const y = e.clientY - rect.top;
     const xPct = (x / rect.width - 0.5) * 2;
     const yPct = (y / rect.height - 0.5) * 2;
-    const rotateX = -yPct * 4;
-    const rotateY = xPct * 4;
+    const rotateX = -yPct * 6;
+    const rotateY = xPct * 6;
     
     el.style.transform = `perspective(1600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.005, 1.005, 1.005)`;
     el.style.transition = "transform 0.24s ease-out";
